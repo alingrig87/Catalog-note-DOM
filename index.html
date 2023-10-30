@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h1>Catalog Note</h1>
+		<div id="add-student-container">
+			<input type="text" id="add-student-name" />
+			<button id="add-student-btn">Adauga</button>
+		</div>
+		<div id="table-container">
+			<table border="1" id="students-table">
+				<thead>
+					<th>
+						Nume <button id="sort-name-asc">↑</button>
+						<button id="sort-name-desc">↓</button>
+					</th>
+					<th>
+						Medie Note <button id="sort-medie-asc">↑</button>
+						<button id="sort-medie-desc">↓</button>
+					</th>
+					<th>Note student</th>
+					<th>Sterge student</th>
+				</thead>
+				<tbody id="students-table-body"></tbody>
+			</table>
+		</div>
+		<script src="app.js"></script>
+	</body>
+</html>
