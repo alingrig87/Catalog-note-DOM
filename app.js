@@ -1,10 +1,14 @@
 import { students } from './data/students.js';
 import {
-	addStudentRowsToTable,
+	updateStudentsTable,
 	addNewRowToStudentsTable,
 	sortStudents,
 	updateGradesTable,
+	updateStudentsAverages,
+	calculateAverage,
 } from './utils.js';
+
+updateStudentsAverages(students);
 
 const studentNameInput = document.getElementById('add-student-name');
 const addStudentBtn = document.getElementById('add-student-btn');
@@ -17,7 +21,7 @@ addStudentBtn.addEventListener('click', addNewStudent);
 let selectedStudent;
 
 window.addEventListener('load', () =>
-	addStudentRowsToTable(students, studentTableBody)
+	updateStudentsTable(students, studentTableBody)
 );
 
 function addNewStudent(e) {
@@ -69,7 +73,6 @@ function handleStudentsActions(e) {
 		gradesTableContainer.classList.remove('hide-grades');
 
 		selectedStudent = students.find((student) => buttonId === student.id);
-		console.log(selectedStudent, 'selected');
 		updateGradesTable(selectedStudent, gradesTableBody);
 	}
 }
@@ -78,8 +81,9 @@ function handleGradesActions(e) {
 	if (e.target.classList.contains('delete-grade')) {
 		const gradeIndex = Number(e.target.id);
 		selectedStudent.note.splice(gradeIndex, 1);
-		// calculate and update students table
+		selectedStudent.medieNote = calculateAverage(selectedStudent.note);
 		updateGradesTable(selectedStudent, gradesTableBody);
+		updateStudentsTable(students, studentTableBody);
 	}
 }
 
@@ -92,9 +96,9 @@ function addGrade() {
 	const grade = Number(gradeInput.value);
 	console.log(selectedStudent);
 	selectedStudent.note.push(grade);
-	// calculateAverage
-	// selectedStudent.medieNote =
+	selectedStudent.medieNote = calculateAverage(selectedStudent.note);
 	updateGradesTable(selectedStudent, gradesTableBody);
+	updateStudentsTable(students, studentTableBody);
 }
 
 const hideGradesBtn = document.getElementById('hide-grades');

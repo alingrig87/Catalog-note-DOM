@@ -1,11 +1,13 @@
-export function addStudentRowsToTable(students, tableBodyElement) {
+export function updateStudentsTable(students, tableBodyElement) {
 	tableBodyElement.innerHTML = students
 		.map(
 			(student) => `
       <tr>
          <td>${student.name}</td>
-         <td>${student.medieNote}</td>
-         <td><button id=${student.id} class="show-grades">Vezi/Adauga note</button></td>
+         <td>${student.medieNote.toFixed(2)}</td>
+         <td><button id=${
+						student.id
+					} class="show-grades">Vezi/Adauga note</button></td>
          <td><button  class="delete-student">X</button></td>
       </tr>
    `
@@ -59,4 +61,14 @@ export function updateGradesTable(student, gradesTableBody) {
          `
 		)
 		.join('');
+}
+
+export function calculateAverage(numbers) {
+	return numbers.reduce((acc, number) => acc + number, 0) / numbers.length;
+}
+
+export function updateStudentsAverages(students) {
+	students.forEach(
+		(student) => (student.medieNote = calculateAverage(student.note))
+	);
 }
