@@ -20,11 +20,17 @@ window.addEventListener('load', () =>
 	addStudentRowsToTable(students, studentTableBody)
 );
 
-// BUG - Adding grades to new students(added from input) doesn't work
 function addNewStudent(e) {
 	if (e.key === 'Enter' || e.target.id == 'add-student-btn') {
-		const student = { name: studentNameInput.value, medieNote: 0, note: [] };
-		addNewRowToStudentsTable(student, studentTableBody);
+		const newStudendId = students.length + 1 + '';
+		const newStudent = {
+			id: newStudendId,
+			name: studentNameInput.value,
+			medieNote: 0,
+			note: [],
+		};
+		students.push(newStudent);
+		addNewRowToStudentsTable(newStudent, studentTableBody);
 	}
 }
 
@@ -63,6 +69,7 @@ function handleStudentsActions(e) {
 		gradesTableContainer.classList.remove('hide-grades');
 
 		selectedStudent = students.find((student) => buttonId === student.id);
+		console.log(selectedStudent, 'selected');
 		updateGradesTable(selectedStudent, gradesTableBody);
 	}
 }
@@ -83,6 +90,7 @@ addGradeBtn.addEventListener('click', addGrade);
 
 function addGrade() {
 	const grade = Number(gradeInput.value);
+	console.log(selectedStudent);
 	selectedStudent.note.push(grade);
 	// calculateAverage
 	// selectedStudent.medieNote =
