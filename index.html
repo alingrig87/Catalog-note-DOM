@@ -4,6 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Document</title>
+		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
 		<h1>Catalog Note</h1>
@@ -27,6 +28,25 @@
 				</thead>
 				<tbody id="students-table-body"></tbody>
 			</table>
+			<br /><br />
+			<div class="grades-table-container hide-grades">
+				<div>
+					<button id="hide-grades">Ascunde notele</button>
+				</div>
+
+				<div id="add-grade">
+					<input type="number" min="1" max="10" value="5" id="grade-input" />
+					<button id="add-grade-btn">Adauga</button>
+				</div>
+
+				<table border="1">
+					<thead>
+						<th>Note</th>
+						<th>Sterge</th>
+					</thead>
+					<tbody id="grades-table"></tbody>
+				</table>
+			</div>
 		</div>
 		<script src="app.js"></script>
 	</body>
